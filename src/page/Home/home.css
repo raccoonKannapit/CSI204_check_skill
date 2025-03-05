@@ -1,6 +1,15 @@
 .home-button-container{
+    position: relative;
     display: flex;
     justify-content: space-between;
     width: 300px;
-    border: 1px solid black;
+    left: 580px;
+    /* border: 1px solid black; */
+}
+
+.home-container{
+    position: relative;
+    top: 450px;
+    display: grid;
+    text-align: center;
 }
