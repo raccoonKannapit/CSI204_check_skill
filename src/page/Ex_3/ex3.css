@@ -1,0 +1,4 @@
+.text-hover:hover {
+    color: green;
+    cursor: pointer;
+}
