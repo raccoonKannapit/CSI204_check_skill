@@ -103,7 +103,7 @@ function CheckSkillEx4() {
         }
     }
     
-    debugger
+    // debugger
 
     return ( 
         <div>

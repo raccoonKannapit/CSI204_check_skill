@@ -19,7 +19,7 @@ function CheckSkillEx5() {
     const [credit4, setCredit4] = useState(3);
     const [credit5, setCredit5] = useState(3);
 
-    const [gpa, setGpa] = useState(0);
+    const [gpa, setGpa] = useState("");
 
     const calculateGPA = () => {
         let totalScore = (score1 * credit1) + (score2 * credit2) + (score3 * credit3) + (score4 * credit4) + (score5 * credit5);
