@@ -10,27 +10,56 @@ function CheckSkillEx4() {
     const calculate = () => {
         // area for circle = pi * r^2
         let area = Math.PI * radius * radius;
-        setResult(Math.round(area));
+        setResult((area.toFixed(2)));
     }
 
     // part 2-----------------------------------
 
     const [age, setAge] = useState(0);
     const [result2, setResult2] = useState("");
+    const [resultOdd, setResultOdd] = useState("");
 
     const checkAge = () => {
-        if (age >= 18) {
+        if (age <0 ) {
+            setResult2("Invalid age");
+            setResultOdd("Invalid age");
+            return
+        }
+        else if (age >= 18) {
             setResult2("Adult");
         } else if (age >= 13) {
             setResult2("Teenager");
         } else {
             setResult2("Kid");
         }
+
+        if (age % 2 === 0) {
+            setResultOdd("Even");
+        } else {
+            setResultOdd("Odd");
+        }
     }
 
     // part 3-----------------------------------
 
-    // const [result3, setResult3] = useState("");
+    // const [result3, setResult3] = useState([]);
+
+    const [messages, setMessages] = useState([]);
+
+    const askForInput = () => {
+        let userInput;
+        const newMessages = [...messages];
+
+        while (true) {
+            userInput = window.prompt("Enter something (Type 'exit' to stop):");
+            if (userInput === null || userInput.toLowerCase() === "exit") {
+                break;
+            }
+            newMessages.push(userInput);
+        }
+
+        setMessages(newMessages);
+    };
 
     const loop = () => {
         for (let i = 1; i <= 10; i++) {
@@ -72,9 +101,9 @@ function CheckSkillEx4() {
 
     // part 5-----------------------------------
 
-    const [num5, setNum5] = useState();
+    const [num5, setNum5] = useState(0);
     const [result5, setResult5] = useState();
-    const [num5Fibo, setNum5Fibo] = useState();
+    const [num5Fibo, setNum5Fibo] = useState(0);
     const [result5Fibo, setResult5Fibo] = useState();
 
     const displayFac = () => {
@@ -86,6 +115,11 @@ function CheckSkillEx4() {
     }
 
     const factorial = (n) => {
+        // if (!n || n < 0) {
+        //     setResult5("Invalid input");
+        //     return;
+        // }
+        
         if(n == 0 || n == 1){
             return 1;
         } else {
@@ -94,16 +128,27 @@ function CheckSkillEx4() {
     }
 
     const fibonacci = (n) => {
-        if(n == 1){
+        if(n == 0 )
             return 0;
-        } else if(n == 2){
+        else if( n == 1){
             return 1;
-        } else if(n > 2){
-            return fibonacci(n-2) + fibonacci(n-1);
+        } else {
+            return fibonacci(n-1) + fibonacci(n-2);
         }
     }
     
     // debugger
+
+    let x = 5
+    const cal = () => {
+        try {
+            console.log(x-m);
+        }
+        catch(err){
+
+            console.log(err);
+        }
+    }
 
     return ( 
         <div>
@@ -112,7 +157,7 @@ function CheckSkillEx4() {
 
             <h3>part 1</h3>
             <label htmlFor="">Enter Radius : </label>
-            <input type="number" value={radius} onChange={(e) => setRadius(e.target.value)} /> <br />
+            <input type="number" value={radius} onChange={(e) => setRadius(Number(e.target.value))} /> <br />
             <button className="btn btn-success mt-2" onClick={calculate}>Submit</button> <br />
             <label>result : {result || "..."}</label>
             <hr />
@@ -121,12 +166,15 @@ function CheckSkillEx4() {
             <label htmlFor="">Enter Age : </label>
             <input type="number" value={age} onChange={(e) => setAge(e.target.value)} /> <br />
             <button className="btn btn-success mt-2" onClick={checkAge}>Submit</button> <br />
-            <label>result : {result2 || "..."}</label>
+            <label>result : {result2 || "..."}</label><br />
+            <label>Odd or Even : {resultOdd || "..."}</label>
+
             <hr />
 
             <h3>part 3</h3>
             <button className="btn btn-success mt-2" onClick={loop}>start loop</button>
-            {/* <label htmlFor="">{result3}</label> */}
+            <button className="btn btn-success mt-2 ms-2" onClick={askForInput}>while</button><br />
+            <label htmlFor="">{messages}</label>
             <hr />
 
             <h3>part 4</h3>
@@ -146,6 +194,9 @@ function CheckSkillEx4() {
             <input type="number" value={num5Fibo} onChange={(e) => setNum5Fibo(e.target.value)} /> <br />
             <button className="btn btn-success mt-2" onClick={displayFibo}>display fibonacci</button><br />
             <label>result :  {result5Fibo || "..."}</label>
+
+            <h3>part 6</h3>
+            <button className="btn btn-success" onClick={cal}>calculate</button><br />
         </div>
      );
 }

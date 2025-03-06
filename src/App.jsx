@@ -10,6 +10,7 @@ import CheckSkillEx2 from './page/Ex_2/ex2.jsx';
 import CheckSkillEx3 from './page/Ex_3/ex3.jsx';
 import CheckSkillEx4 from './page/Ex_4/ex4.jsx';
 import CheckSkillEx5 from './page/Ex_5/ex5.jsx';
+import Todo from './page/Ex_5/todo.jsx';
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
           <Route path="/ex3" element={<CheckSkillEx3 />} />
           <Route path="/ex4" element={<CheckSkillEx4 />} />
           <Route path="/ex5" element={<CheckSkillEx5 />} />
+          <Route path="/todo" element={<Todo />} />
         </Routes>
       </HashRouter>
       

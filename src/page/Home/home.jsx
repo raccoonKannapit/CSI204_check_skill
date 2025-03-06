@@ -14,6 +14,7 @@ function home() {
                 <button className="btn btn-primary" onClick={() => navigate("/ex3")}>Ex3</button>
                 <button className="btn btn-primary" onClick={() => navigate("/ex4")}>Ex4</button>
                 <button className="btn btn-primary" onClick={() => navigate("/ex5")}>Ex5</button>
+                <button className="btn btn-primary" onClick={() => navigate("/todo")}>Todo</button>
             </div>
         </div>
      );

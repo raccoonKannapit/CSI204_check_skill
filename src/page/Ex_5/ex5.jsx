@@ -19,30 +19,56 @@ function CheckSkillEx5() {
     const [credit4, setCredit4] = useState(3);
     const [credit5, setCredit5] = useState(3);
 
+    const [grade1, setGrade1] = useState("");
     const [gpa, setGpa] = useState("");
 
     const calculateGPA = () => {
-        let totalScore = (score1 * credit1) + (score2 * credit2) + (score3 * credit3) + (score4 * credit4) + (score5 * credit5);
-        let totalCredit = credit1 + credit2 + credit3 + credit4 + credit5;
-        let tempGPA = totalScore / totalCredit;
-        if (tempGPA >= 80) {
-            setGpa("A");
-        } else if (tempGPA >= 75) {
-            setGpa("B+");
-        } else if (tempGPA >= 70) {
-            setGpa("B");
-        } else if (tempGPA >= 65) {
-            setGpa("C+");
-        } else if (tempGPA >= 60) {
-            setGpa("C");
-        } else if (tempGPA >= 55) {
-            setGpa("D+");
-        } else if (tempGPA >= 50) {
-            setGpa("D");
+        let totalScore = 
+        (convertScoreToGPA(score1) * credit1) +
+        (convertScoreToGPA(score2) * credit2) +
+        (convertScoreToGPA(score3) * credit3) +
+        (convertScoreToGPA(score4) * credit4) +
+        (convertScoreToGPA(score5) * credit5);
+
+    let totalCredit = Number(credit1) + Number(credit2) + Number(credit3) + Number(credit4) + Number(credit5);
+    let tempGPA = totalScore / totalCredit;
+
+        console.log(totalScore)
+        console.log(totalCredit)
+
+        setGpa(tempGPA.toFixed(2));
+
+        
+        if (tempGPA >= 4) {
+            setGrade1("A");
+        } else if (tempGPA >= 3.5) {
+            setGrade1("B+");
+        } else if (tempGPA >= 3) {
+            setGrade1("B");
+        } else if (tempGPA >= 2.5) {
+            setGrade1("C+");
+        } else if (tempGPA >= 2) {
+            setGrade1("C");
+        } else if (tempGPA >= 1.5) {
+            setGrade1("D+");
+        } else if (tempGPA >= 1) {
+            setGrade1("D");
         } else {
-            setGpa("F");
+            setGrade1("F");
         }
+        console.log(tempGPA);
     }
+
+    const convertScoreToGPA = (score) => {
+        if (score >= 80) return 4.0;
+        if (score >= 75) return 3.5;
+        if (score >= 70) return 3.0;
+        if (score >= 65) return 2.5;
+        if (score >= 60) return 2.0;
+        if (score >= 55) return 1.5;
+        if (score >= 50) return 1.0;
+        return 0.0;
+    };
 
     // -------part 3--------
 
@@ -96,39 +122,44 @@ function CheckSkillEx5() {
             <button className="btn btn-primary home-button" onClick={() => navigate("/")}>Home</button>
             <h1>Ex5</h1>
             <table className="ex5-table">
-                <tr>
-                    <th>รหัสวิชา</th>
-                    <th>คะแนนที่ได้</th>
-                    <th>หน่วยกิต</th>
-                </tr>
-                <tr>
-                    <td>CSI101</td>
-                    <td><input type="number" value={score1} onChange={(e) => setScore1(e.target.value)} /></td>
-                    <td><input type="number" value={credit1} onChange={(e) => setCredit1(e.target.value)} /></td>
-                </tr>
-                <tr>
-                    <td>CSI102</td>
-                    <td><input type="number" value={score2} onChange={(e) => setScore2(e.target.value)} /></td>
-                    <td><input type="number" value={credit2} onChange={(e) => setCredit2(e.target.value)} /></td>
-                </tr>
-                <tr>
-                    <td>CSI203</td>
-                    <td><input type="number" value={score3} onChange={(e) => setScore3(e.target.value)} /></td>
-                    <td><input type="number" value={credit3} onChange={(e) => setCredit3(e.target.value)} /></td>
-                </tr>
-                <tr>
-                    <td>CSI204</td>
-                    <td><input type="number" value={score4} onChange={(e) => setScore4(e.target.value)} /></td>
-                    <td><input type="number" value={credit4} onChange={(e) => setCredit4(e.target.value)} /></td>
-                </tr>
-                <tr>
-                    <td>CSI305</td>
-                    <td><input type="number" value={score5} onChange={(e) => setScore5(e.target.value)} /></td>
-                    <td><input type="number" value={credit5} onChange={(e) => setCredit5(e.target.value)} /></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>รหัสวิชา</th>
+                        <th>คะแนนที่ได้</th>
+                        <th>หน่วยกิต</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CSI101</td>
+                        <td><input className="borderless" type="number" value={score1} onChange={(e) => setScore1(Number(e.target.value))} /></td>
+                        <td><input className="borderless" type="number" value={credit1} onChange={(e) => setCredit1(Number(e.target.value))} /></td>
+                    </tr>
+                    <tr>
+                        <td>CSI102</td>
+                        <td><input className="borderless" type="number" value={score2} onChange={(e) => setScore2(Number(e.target.value))} /></td>
+                        <td><input className="borderless" type="number" value={credit2} onChange={(e) => setCredit2(Number(e.target.value))} /></td>
+                    </tr>
+                    <tr>
+                        <td>CSI203</td>
+                        <td><input className="borderless" type="number" value={score3} onChange={(e) => setScore3(Number(e.target.value))} /></td>
+                        <td><input className="borderless" type="number" value={credit3} onChange={(e) => setCredit3(Number(e.target.value))} /></td>
+                    </tr>
+                    <tr>
+                        <td>CSI204</td>
+                        <td><input className="borderless" type="number" value={score4} onChange={(e) => setScore4(Number(e.target.value))} /></td>
+                        <td><input className="borderless" type="number" value={credit4} onChange={(e) => setCredit4(Number(e.target.value))} /></td>
+                    </tr>
+                    <tr>
+                        <td>CSI305</td>
+                        <td><input className="borderless" type="number" value={score5} onChange={(e) => setScore5(Number(e.target.value))} /></td>
+                        <td><input className="borderless" type="number" value={credit5} onChange={(e) => setCredit5(Number(e.target.value))} /></td>
+                    </tr>
+                </tbody>
             </table>
             <button className="btn btn-success mt-2" onClick={calculateGPA} >summit</button>
             <label>GPA : {gpa}</label>
+            <label>grade : {grade1}</label>
             <hr />
 
             <h3>part 3</h3>
